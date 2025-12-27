@@ -11,7 +11,7 @@ exports.handler = async (event) => {
     const apiKey = process.env.API_KEY;
     
     if (!apiKey) {
-        console.log("ERROR: PI_API_KEY not set!");
+        console.log("ERROR: API_KEY not set!");
         return { statusCode: 500, body: JSON.stringify({ status: 'error', message: 'Server configuration error' }) };
     }
     
