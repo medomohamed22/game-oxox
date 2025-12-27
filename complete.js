@@ -16,15 +16,15 @@ exports.handler = async (event) => {
     
     if (!paymentId || !txid) return { statusCode: 400, body: JSON.stringify({ status: 'error', message: 'Missing data' }) };
     
-    const piApiKey = process.env.PI_API_KEY;
+    const apiKey = process.env.PI_API_KEY;
     const databaseUrl = process.env.DATABASE_URL;
     
-    if (!piApiKey || !databaseUrl) return { statusCode: 500, body: JSON.stringify({ status: 'error', message: 'Config error' }) };
+    if (!apiKey || !databaseUrl) return { statusCode: 500, body: JSON.stringify({ status: 'error', message: 'Config error' }) };
     
     try {
         const piResponse = await fetch(`https://api.minepi.com/v2/payments/${paymentId}/complete`, {
             method: 'POST',
-            headers: { 'Authorization': `Key ${piApiKey}`, 'Content-Type': 'application/json' },
+            headers: { 'Authorization': `Key ${apiKey}`, 'Content-Type': 'application/json' },
             body: JSON.stringify({ txid })
         });
         
